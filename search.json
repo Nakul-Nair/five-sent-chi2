@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "A Five-Sentence Term Paper Using Chi2 Analysis",
+    "section": "",
+    "text": "Introduction\nRQ: Does the color of the book predict the book’s genre?\nMany have wondered whether or not you can judge a book by its cover; in this research study, we are investigating whether or not the primary color of a book’s cover is correlated with the genre of the book.\n\n\nLiterature Review\nThere’s a previous study about guessing book genre’s using NLP (Vayadande et al. 2024).\n\n\nMethod\n\nimport pandas as pd\nimport numpy as np\nimport seaborn as sns\nfrom scipy.stats import chi2_contingency\n\ndomain = \"https://raw.githubusercontent.com/\"\npath = \"adamrossnelson/confident/refs/heads/main/data/\"\nfile = \"confident_fictional_books.csv\"\n\nbooks = pd.read_csv(domain + path + file)\n\nengine: jupyter\n\nOur Null Hyopthesis is that book cover color does not predict the book’s genre while the alternate hypothesis is that the book cover color does predict the book’s genre. We study this question with data from 359 books where we know the book’s genre and the book’s cover color such that we can conduct a chi2 test to see if these two variables are either independent or dependent (as it turns out our chi2 test will incolve a\n6 x 6 test).\n\n\nResults\n\n#conduct the chi2 with chi2_contigency by passing the observed \nx2, pval, degf, _ =  chi2_contingency(\n    pd.crosstab(\n        books['book_genre'],\n        books['book_color']))\n\nResults: 1.99210 -Pvalue: 1.00000 -Degrees of Freedom: 25.\nAfter running a Chi2 statistic on the data, we found a P-Value of nearly 1. This leads us to keep the Null hypothesis becuase the effect we found was not significant. There is no evidence to suggest that there is a correlation between the color of a book’s cover and the genre of the book.\n\n\nDiscussion\nPerhaps a disappointing result for the members of UW-Madison’s book club, while the researchers remain open to having these results changed by replication of their study, for now, the researchers are steadfast in supporting their findings.\n\n\nReferences\n\n\nVayadande, Kuldeep, Preeti Bailke, Ashutosh M Kulkarni, R Kumar, and Ajit B Patil. 2024. “Book Genre Prediction Using NLP: A Review.” How Machine Learning Is Innovating Today’s World: A Concise Technical Guide, 37–46."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  }
+]
