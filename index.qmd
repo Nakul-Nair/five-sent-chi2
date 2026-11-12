@@ -1,0 +1,64 @@
+---
+title: "A Five-Sentence Term Paper Using Chi2 Analysis"
+date: today
+author: 
+  name:  Nakul Nair
+  affiliation: University of Wisconsin-Madison
+execute:
+  echo: true
+bibliography: references.bib
+---
+
+# Introduction 
+RQ: Does the color of the book predict the book's genre?
+
+Many have wondered whether or not you can judge a book by its cover; in this research study, we are investigating whether or not the primary color of a book's cover is correlated with the genre of the book.
+
+
+# Literature Review 
+There's a previous study about guessing book genre's using NLP [@vayadande2024book]. 
+
+# Method 
+```{python}
+import pandas as pd
+import numpy as np
+import seaborn as sns
+from scipy.stats import chi2_contingency
+
+domain = "https://raw.githubusercontent.com/"
+path = "adamrossnelson/confident/refs/heads/main/data/"
+file = "confident_fictional_books.csv"
+
+books = pd.read_csv(domain + path + file)
+
+engine: jupyter
+```
+
+Our Null Hyopthesis is that book cover color does not predict the book's genre while the alternate hypothesis is that the book cover color does predict the book's genre. We study this question with data from `{python} f"{books.shape[0]}"` books where we know the book's genre and the book's cover color such that we can conduct a chi2 test to see if these two variables are either independent or dependent (as it turns out our chi2 test will incolve a 
+
+`{python} f"{books['book_genre'].nunique()}"` x
+`{python} f"{books['book_color'].nunique()}"` test).
+
+
+
+# Results 
+```{python}
+#conduct the chi2 with chi2_contigency by passing the observed 
+x2, pval, degf, _ =  chi2_contingency(
+    pd.crosstab(
+        books['book_genre'],
+        books['book_color']))
+```
+
+Results: `{python} f"{x2:.5f}"` -Pvalue: `{python} f"{pval:.5f}"` -Degrees of Freedom: `{python} f"{degf}"`.
+
+After running a Chi2 statistic on the data, we found a P-Value of nearly 1. This leads us to keep the Null hypothesis becuase the effect we found was not significant. There is no evidence to suggest that there is a correlation between the color of a book's cover and the genre of the book.
+
+
+# Discussion
+Perhaps a disappointing result for the members of UW-Madison's book club, while the researchers remain open to having these results changed by replication of their study, for now, the researchers are steadfast in supporting their findings.  
+
+
+# References
+::: {#refs}
+:::
